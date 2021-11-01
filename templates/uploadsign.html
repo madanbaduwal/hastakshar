@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+
+{% block result_block %}
+{% if sendAlert == "True" %}
+    <div class = "row">
+        <div class = "col-md-12"  align="center">
+            <div class="alert alert-primary col-md-6" role="alert" style="font-size:16px">
+                {{alertMessage}}
+            </div>
+        </div>
+    </div>
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block body_block %}
+	<link rel="stylesheet" href="{% static 'css/loader.css' %}"/>
+<div class="jumbotron jumbotron-fluid blue-grey lighten-5 container" style="width:100%" id="signuploadbox">
+    <div id="nosign">
+        <div  class="d-flex justify-content-center">
+            <h4 style="font-size:20px;color:blue;">No Signature Classifier!!</h4>
+        </div>
+    <div  class="row d-flex justify-content-center">
+        <h5 style="font-size:14px; color:blue;">Would you like to upload your signatures?</h5>
+    </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+    <form method="POST" id="upload" enctype="multipart/form-data">
+        <input type="hidden" name="form" value="uploadSign"/>
+        <input class="btn btn-info" type="file" name="signatures" onchange="showTraining(); upload.submit();" multiple>
+        </form>
+<!--        <button type="Submit" class="btn btn-info" style="font-size:20px; color:white;">Upload</button>-->
+    </div>
+
+    </div>
+
+<script>
+    function showTraining(){
+        document.getElementById("nosign").innerHTML = '<div class="d-flex justify-content-center"> <div class="loader"></div></div><div  class="row d-flex justify-content-center"><h2 style="font-size:20px;color:blue;">Your Classifier is Training</h2></div>';
+    }
+</script>
+
+{% endblock %}
+
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+       <div class="row d-flex justify-content-center">
+           <a href="{% url 'upload' %}" class="btn btn-info">Upload</a>
+<!--        <button type="Submit" class="btn btn-info" style="font-size:20px; color:white;">Upload</button>-->
+       </div>
+
+       </div>
+{% endblock %}
+
+=======
+        </div>
+    {% endblock %}
+{% else %}
+    
+{% endif %}
+>>>>>>> b44aa4093e45a666fdb55b8ebc7eda5785c838e9
+>>>>>>> e08fa821d8e8c550e6d1f7d4e79f177469618e77

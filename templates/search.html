@@ -1,0 +1,39 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% load mycustomfilters %}
+{% block body_block %}
+<div class = "row">
+    <div class = "col-md-12"  align="center">
+    <div class="col-md-6 jumbotron jumbotron-fluid blue-grey lighten-5" >
+        <table class="table table-borderless">
+            <tbody>
+                {% for user in searchResult %}
+                <tr>
+                    <td width="70px" style="">
+                            {% with 'profile/'|add:user.emailId|splitByAdtherate as profileLoc %}
+                            <img src="{% static profileLoc %}" style="display:inline-block;" class="img-fluid z-depth-1 rounded-circle" alt="Profile" width="50px" height="50px">
+                            {% endwith %}
+                    </td>
+                    <td><div style="font-size:16px">{{user.name}}</div><div style="font-size:12px">{{user.emailId}}</div></td>
+                    <td>
+                        <form method="POST" enctype="multipart/form-data">
+                        {% if user.allowed == "yes" %}
+                            <button type="submit" name="disallow" value="{{user.emailId}}" class="btn btn-info">Disallow</button>
+                        {% else %}
+                            <button type="submit" name="allow" value="{{user.emailId}}" class="btn btn-info">Allow</button>
+                        {% endif %}
+                        </form>
+                    </td>
+                    <td>{% if user.hasAllowed == "yes" %}
+                    <form method="POST" enctype="multipart/form-data">
+                        <input type="file" class="btn btn-info" name="verify" value="{{user.emailId}}" onchange="form.submit()">
+                    </form>
+                    {% endif %}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+<HTML>
+<head>
+	<title>Train me</title>
+</head>
+<body>
+	<h1>This is training</h1>
+	<form method="POST"  enctype="multipart/form-data" action="{% url 'train_sign' %}">
+		{% csrf_token %}
+		<button name="train" type="submit">Train me</button>
+	</form>
+</body>
+</HTML>

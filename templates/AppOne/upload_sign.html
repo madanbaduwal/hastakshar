@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload your signature</title>
+    <link rel="stylesheet" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}"/>
+
+</head>
+<body>
+   <div class="container">
+        <h1>Upload your signature carefully!!</h1>
+        <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+<!--        {{ form.as_p }}-->
+            <input type="file" name="signature" size="5" accept="image/gif, image/jpeg, image/png" multiple>
+<!--                        <input type="file" name="sign" size="5" multiple>-->
+
+
+            <input type="submit" value="Upload">
+    </form>
+   </div>
+</body>
+</html>

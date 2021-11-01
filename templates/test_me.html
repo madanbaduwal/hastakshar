@@ -1,0 +1,16 @@
+<HTML>
+<head>
+	<title>Test me</title>
+</head>
+<body>
+	<h1>This is testing buddy</h1>
+	<form method="POST"  enctype="multipart/form-data" action="{% url 'test_sign' %}">
+		{% csrf_token %}
+		<input type="text" name="filename"/>
+		<button name="train" type="submit">Test Me</button>
+	</form>
+	{% block bodyname %}
+	<h1> Result: {{result}} Percent </h1>
+	{% endblock %}
+</body>
+</HTML>

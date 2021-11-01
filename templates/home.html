@@ -1,0 +1,285 @@
+<html>
+{% load staticfiles %}
+{% load mycustomfilters %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% comment %} <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css"> {% endcomment %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> {% endcomment %}
+    {% comment %} <link href="{% static 'bnta/icons.css' %}" rel="stylesheet"> {% endcomment %}
+    {% comment %} <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> {% endcomment %}
+    <style>
+    .table-font tbody td {
+        font-family: Arial;
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+    }
+    .table-font thead td {
+        font-family: Arial;
+        font-size: 14px;
+        font-weight: bold;
+        color: #000000;
+    }
+    </style>
+    <title>Home</title>
+    {% include 'cssandjs.html' %}
+</head>
+<body >
+<div class="home_background_container prlx_parent">
+			<div class="home_background prlx" style="background-image: url({% static "images/back.jpeg" %}) "></div>
+
+		</div>
+   <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+               <p style="font-weight:bold; font-size:30px;  color:white;">Hastakshar</p>
+            </div>
+
+            <div class="col-sm-4 form-inline mr-auto">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                <input class="" type="text" name="query" placeholder="Search" aria-label="Search" style="width:70%;font-size:15px;">
+                    <button class="btn btn-primary" id="search_submit" type="submit" name="search" value="search" >Search</button>
+                </form>
+<!--                <div id = "">-->
+<!--&lt;!&ndash;                <form action="" method="get" id = "search-form">&ndash;&gt;-->
+<!--                    <input type="search" class="search_input bez_1">-->
+
+<!--   <div class="col-sm-6">-->
+<!--      <button class="btn btn-primary" id="search_submit" name = "search_submit" type="submit" value = "submit" ><span class="glyphicon glyphicon-search"></span></button>-->
+<!--    </div>-->
+        </div>
+             <div class="col-sm-4" align="right" >
+             <div class="dropdown" style="display:inline-block;">
+                 <button class="btn btn-secondary" type="submit" id="notificationButton" style="font-size:18px; " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                &#128235;</button>
+<!--                 <i class="material-icons dropdown-toggle" type="button" id="dropdownMenuButton" style="font-size:20px;color:blue; margin-left:100px;">vpn_lock</i>-->
+                 <div class="dropdown-menu" style="width:300px; position:relative;" aria-labelledby="dropdownMenuButton1">
+                    <div id="notificationContent"></div>
+                    <h5>New Notifications will be collected automatically.</h5>
+                </div>
+            </div>
+
+            <div class="dropdown" style="display:inline-block;">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" style="font-size:15px; " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                &#10175; Settings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+<!--                <a href="#"><span class="glyphicon glyphicon-cog" style="font-size:30px; margin-left:200px;"></span></a>-->
+            {% comment %} <div class="col-xl-5 col-md-4 mb-3 text-center"> {% endcomment %}
+                {% with 'profile/'|add:email|splitByAdtherate as profileLoc %}
+                <img src="{% static profileLoc %}" style="display:inline-block;" class="img-fluid z-depth-1 rounded-circle" alt="Profile" width="50px" height="50px">
+                {% endwith %}
+            {% comment %} </div> {% endcomment %}
+
+            </div>
+            </div>
+            </div>
+
+        {% block result_block %}
+        {% endblock %}
+
+      {% block body_block %}
+
+        {% endblock %}
+
+        
+       <div class="row">
+
+           <div class="col-sm-6" align="center">
+
+           <div class="col-sm-9">
+               <div class="card card-cascade narrower">
+
+  <!-- Card image -->
+            <div class="view view-cascade gradient-card-header green" style="padding:10px">
+
+    <!-- Title -->
+            <h2 class="card-header-title" style="font-size:20px; color:white; font-weight:bold; font-family:Courier New;"> People Allowed you </h2>
+                <hr>
+    <!-- Subtitle -->
+            <h5 class="mb-0 pb-3 pt-2"style="font-size:12px; color:white;">You can now verify the signature of people listed below:</h5>
+
+            </div>
+{% comment %} 
+               <div class="row" style="">
+                   <div class="col-sm-6"> {% endcomment %}
+                        {% comment %} <ol>
+                            <div class="col-sm-3">
+                                <li style="font-size:15px;">Prakash</li>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-info">Verify</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <li style="font-size:15px;">Madan</li>
+                            </div>
+                             <div class="col-sm-3">
+                                <button type="button" class="btn btn-info">Verify</button>
+
+                            </div>
+                        </ol> {% endcomment %}
+                        <table class="table table-striped table-font">
+                            <thead>
+                                <tr>
+                                    <td>DP</td>
+                                    <td>Detail</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for signee in hasAllowed %}
+                                <tr>
+                                <td width="40px">{% with 'profile/'|add:signee.emailId|splitByAdtherate as profileLoc %}
+                                    <img src="{% static profileLoc %}" style="display:inline-block;" class="img-fluid z-depth-1 rounded-circle" alt="Profile" width="40px" height="40px">
+                                    {% endwith %}
+                                </td>
+                                <td><div style="font-size:16px">{{signee.name}}</div><div style="font-size:12px">{{signee.emailId}}</div></td>
+                                <td><form method="POST" id="ver" enctype="multipart/form-data">
+                                <input type="hidden" name="verify" value="{{signee.emailId}}" />
+                                <input type="file" class="btn btn-info" name="test" onchange="ver.submit()">
+                                </form></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                   </div>
+<!--                   <div class="col-sm-6">-->
+<!--                       <button type="button" class="btn btn-info">Verify</button>-->
+<!--                   </div>-->
+{% comment %} 
+           </div>
+               </div> {% endcomment %}
+               </div>
+           </div>
+
+           <div class="col-sm-6" align="center">
+           <div class="col-sm-9">
+                <div class="card card-cascade narrower">
+
+  <!-- Card image -->
+            <div class="view view-cascade gradient-card-header red" style="padding:10px">
+
+    <!-- Title -->
+            <h2 class="card-header-title"style="font-size:20px; color:white; font-weight:bold; font-family:Courier New; ">Your Allowed List</h2>
+                <hr>
+    <!-- Subtitle -->
+            <h5 class="mb-0 pb-3 pt-2"style="font-size:12px; color:white;">List of all people who are allowed to verify your signature:</h5>
+
+            </div>
+
+                {% comment %} <div class="row">
+                   <div class="col-sm-6" style=""> {% endcomment %}
+                        {% comment %} <ol>
+                            <div class="col-sm-3">
+                                <li style="font-size:15px;">Prakash</li>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-info">Disallow</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <li style="font-size:15px;">Madan</li>
+                            </div>
+                             <div class="col-sm-3">
+                                <button type="button" class="btn btn-info">Disallow</button>
+
+                            </div>
+                        </ol> {% endcomment %}
+                        <table class="table table-striped table-font">
+                            <thead>
+                                <tr>
+                                    <td>DP</td>
+                                    <td>Detail</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for signee in allowed %}
+                                <tr>
+                                <td width="40px">{% with 'profile/'|add:signee.emailId|splitByAdtherate as profileLoc %}
+                                    <img src="{% static profileLoc %}" style="display:inline-block;" class="img-fluid z-depth-1 rounded-circle" alt="Profile" width="40px" height="40px">
+                                    {% endwith %}</td>
+                                <td><div style="font-size:16px">{{signee.name}}</div><div style="font-size:12px">{{signee.emailId}}</div></td>
+                                <td><form method="POST" enctype="multipart/form-data">
+                                <button type="submit" name="disallow" value="{{signee.emailId}}" class="btn btn-info">Disallow</button>
+                                </form></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                   {% comment %} </div>
+
+                </div> {% endcomment %}
+           </div>
+        </div>
+
+       </div>
+</div>
+
+
+<script>
+    console.log("CONSOLE");
+    document.getElementById("notificationButton").addEventListener('click', getNotification);
+     {% comment %} $(document).change('notificationButton',function(){
+        console.log("I am inside notificationButton");
+        $.ajax({
+            type:"GET",
+            url:"/notification/",
+        },
+        success:function(data){
+            console.log("SUCCESSFUL GETTING NOTIFICATION");
+            console.log(data);
+            var notification = JSON.parse(data);
+            var output = '';
+            for (var i in notification.notification){
+                output += '<h5>'+i+'</h5>'+'<hr>';
+            }
+            document.getElementById('notificationContent').innerHTML = output;
+        },
+        error:function(){
+            console.log("ERROR");
+            alert("ERROR");
+        }); 
+    });  {% endcomment %}
+
+        function getNotification(){
+            console.log("Inside the notification function");
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "{% url 'notification' %}", true);
+            xhr.onload = function(){
+                if(this.status == 200){
+                    console.log("SUCCESSFUL GETTING NOTIFICATION");
+                    var notification = JSON.parse(this.responseText);
+                    console.log(typeof(notification));
+                    var l = notification.notification;
+                    var output = '';
+                    for (var i=0; i<l.length; i++){
+                        console.log(l[i]);
+                        output += '<h5>'+l[i]+'</h5>'+'<hr>';
+                    }
+                    document.getElementById('notificationContent').innerHTML = output;
+                }else{
+                    console.log("ERROR GETTING NOTIFICATION");
+                }
+            }
+            xhr.onerror = function(){
+                console.log("Error sending notification request");
+            }
+            //xhr.onreadystatechange = function(){
+            //    if(this.readyState == 4 && this.status == 200){
+            //        console.log(this.responseText);
+            //    }
+            //}
+            xhr.send();
+        } 
+    
+</script>
+</body>
+</html>

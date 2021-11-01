@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+
+{% block result_block %}
+{% if sendAlert == "True" %}
+    <div class = "row">
+        <div class = "col-md-12"  align="center">
+            <div class="alert alert-primary col-md-6" role="alert" style="font-size:16px">
+                {{alertMessage}}
+            </div>
+        </div>
+    </div>
+    </div>
+{% endif %}
+{% endblock %}
+
+{% block body_block %}
+
+{% endblock %}
+
+
